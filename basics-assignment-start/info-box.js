@@ -2,11 +2,6 @@ class InfoBox extends HTMLElement {
   constructor() {
     super()
 
-    // Creating variables
-    this._$button = null
-    this._$infoEl = null
-    this._isHidden = true
-
     // Creating the shadow DOM
     this.attachShadow({ mode: 'open' })
 
@@ -23,29 +18,30 @@ class InfoBox extends HTMLElement {
         <slot>More infos!</slot>
       </p>
     `
-  }
 
-  connectedCallback() {
+    // Creating variables
+    this._isVisible = false
     this._$button = this.shadowRoot.querySelector('button')
     this._$infoEl = this.shadowRoot.querySelector('p')
 
-    this._isHidden = this.hasAttribute('isHidden')
-
     this._$button.addEventListener('click', this._toggleInfoBox.bind(this))
+  }
+
+  connectedCallback() {
+    const isVisible = this.hasAttribute('is-visible') && this.getAttribute('is-visible') === 'true'
+    if (isVisible) {
+      this._isVisible = true
+      this._$infoEl.style.display = 'block'
+      this._$button.textContent = 'Hide'
+    }
   }
 
   _toggleInfoBox(event) {
     event.preventDefault()
 
-    if (this._isHidden) {
-      this._$infoEl.style.display = 'block'
-      this._$button.textContent = 'Hide'
-      this._isHidden = false
-    } else {
-      this._$infoEl.style.display = 'none'
-      this._$button.textContent = 'Show'
-      this._isHidden = true
-    }
+    this._isVisible = !this._isVisible
+    this._$infoEl.style.display = this._isVisible ? 'block' : 'none'
+    this._$button.textContent = this._isVisible ? 'Hide' : 'Show'
   }
 }
 
