@@ -16,12 +16,16 @@
 </head>
 <body>
 
+  <template id="tooltip-template">
+    <slot>Some default</slot> <span>(?)</span>
+  </template>
+
   <p>
     <uc-tooltip text="Web Components are a set of standards.">My Tooltip</uc-tooltip> is awesome!
   </p>
 
   <p>
-    <uc-tooltip>My Tooltip</uc-tooltip> is awesome!
+    <uc-tooltip></uc-tooltip> is awesome!
   </p>
 
   <p>
