@@ -8,9 +8,11 @@ class Tooltip extends HTMLElement {
 
     this.attachShadow({ mode: 'open' });
 
-    // O template pode ser recuperado no constructor
-    const template = document.querySelector('#tooltip-template');
-    this.shadowRoot.appendChild(template.content.cloneNode(true))
+    // Definindo o template dentro do próprio Web Component S2
+    this.shadowRoot.innerHTML = `
+      <slot>Some default</slot> 
+      <span>(?)</span>
+    `;
   }
 
   connectedCallback() {
