@@ -17,6 +17,26 @@ class Tooltip extends HTMLElement {
           position: absolute;
           z-index: 10;
         }
+
+        :host {
+          background-color: #ccc;
+        }
+
+        :host(.important) {
+          background-color: lightblue;
+        }
+
+        :host-context(p) {
+          font-weight: bold;
+        }
+
+        ::slotted(*) {
+          border-top: 1px solid blue;
+        }
+
+        ::slotted(.highlight) {
+          border-bottom: 1px solid blue;
+        }
       </style>
       <slot>Some default</slot> 
       <span>(?)</span>
