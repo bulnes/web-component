@@ -5,6 +5,7 @@ class Tooltip extends HTMLElement {
 
     this._tooltipContainer
     this._tooltipIcon
+    this._tooltipVisible = false
     this._tooltipText = 'Some dummy default text here.'
 
     this.attachShadow({ mode: 'open' });
@@ -60,7 +61,6 @@ class Tooltip extends HTMLElement {
     this._tooltipIcon.addEventListener('mouseenter', this._showTooltip.bind(this))
     this._tooltipIcon.addEventListener('mouseleave', this._hideTooltip.bind(this))
 
-    this.shadowRoot.appendChild(this._tooltipIcon)
     this.style.position = 'relative'
   }
 
@@ -85,15 +85,25 @@ class Tooltip extends HTMLElement {
     this._tooltipIcon.removeEventListener('mouseleave', this._hideTooltip)
   }
 
-  _showTooltip() {
-    this._tooltipContainer = document.createElement('div')
-    this._tooltipContainer.textContent = this._tooltipText;
+  _renderTooltip() {
+    if (this._tooltipVisible) {
+      this._tooltipContainer = document.createElement('div')
+      this._tooltipContainer.textContent = this._tooltipText;
+      this.shadowRoot.appendChild(this._tooltipContainer)
+    }
+    else if (this._tooltipContainer) {
+      this.shadowRoot.removeChild(this._tooltipContainer)
+    }
+  }
 
-    this.shadowRoot.appendChild(this._tooltipContainer)
+  _showTooltip() {
+    this._tooltipVisible = true
+    this._renderTooltip()
   }
 
   _hideTooltip() {
-    this.shadowRoot.removeChild(this._tooltipContainer)
+    this._tooltipVisible = false
+    this._renderTooltip()
   }
 }
 
