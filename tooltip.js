@@ -60,7 +60,7 @@ class Tooltip extends HTMLElement {
     this._tooltipIcon.addEventListener('mouseenter', this._showTooltip.bind(this))
     this._tooltipIcon.addEventListener('mouseleave', this._hideTooltip.bind(this))
 
-    this.shadowRoot.appendChild(tooltipIcon)
+    this.shadowRoot.appendChild(this._tooltipIcon)
     this.style.position = 'relative'
   }
 
