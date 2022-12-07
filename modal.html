@@ -20,10 +20,29 @@
   </style>
 
   <script src="modal.js"></script>
+
+  <script>
+    function openModal() {
+      const $modal = document.querySelector('uc-modal')
+      $modal.setAttribute('opened', '')
+    }
+  </script>
 </head>
 <body>
-  <uc-modal></uc-modal>
+  <uc-modal>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga reprehenderit quasi iure officia veritatis ullam ex earum incidunt nesciunt! Labore, animi. Minus accusantium, saepe deserunt consequatur nesciunt dignissimos voluptates reiciendis!
+    </p>
 
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident perferendis laudantium voluptatem quidem facere quis, illum distinctio tempora qui eius ipsum ex. Harum ad nostrum aliquid aut unde mollitia tenetur?</p>
+    <br />
+
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus cupiditate nobis, reprehenderit optio pariatur blanditiis ducimus molestiae et, cumque corrupti quia saepe rerum. Pariatur dolores placeat eaque commodi ad natus!
+    </p>
+  </uc-modal>
+
+  <button type="button" onclick="openModal()">
+    Click here to open modal
+  </button>
 </body>
 </html>
