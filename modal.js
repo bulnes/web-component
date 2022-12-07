@@ -1,11 +1,12 @@
 class Modal extends HTMLElement {
 
   constructor() {
-    super();
+    super(); // não se esqueça disso
 
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.innerHTML = `
       <style>
+        /* como estamos no shadowDOM, os estilos globais não são compartilhados */
         * {
           margin: 0;
           padding: 0;
